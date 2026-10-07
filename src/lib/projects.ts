@@ -7,6 +7,17 @@ export interface CategoryOption {
 }
 
 /**
+ * Returns the top featured projects for display on the curated homepage.
+ * Sorts by ascending priority (1, 2, 3...) and caps at limit (default 3).
+ */
+export function getFeaturedProjects(projects: IProject[], limit = 3): IProject[] {
+  return [...projects]
+    .filter((project) => project.featured)
+    .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99))
+    .slice(0, limit);
+}
+
+/**
  * Inspects the provided list of projects and derives the list of active categories.
  * If projects belong to more than 1 distinct category, returns categories along with 'all'.
  * If all projects belong to only 1 category (or none), returns an empty array to signal
@@ -62,14 +73,22 @@ export function getAvailableProjectCategories(projects: IProject[]): CategoryOpt
 }
 
 /**
- * Filters the project list by the selected category.
+ * Filters the project list by the selected category and search query.
  */
 export function filterProjectsByCategory(
   projects: IProject[],
-  activeCategory: 'all' | ProjectCategory
+  activeCategory: 'all' | ProjectCategory,
+  searchQuery = ''
 ): IProject[] {
-  if (activeCategory === 'all') {
-    return projects;
-  }
-  return projects.filter((project) => project.category === activeCategory);
+  return projects.filter((project) => {
+    const matchesCategory =
+      activeCategory === 'all' || project.category === activeCategory;
+    const matchesQuery =
+      searchQuery.trim() === '' ||
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.techStack.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesQuery;
+  });
 }

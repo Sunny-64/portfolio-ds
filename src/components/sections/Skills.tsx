@@ -10,8 +10,12 @@ export function Skills() {
   return (
     <section id="skills" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
-        <div className="mb-10">
-          <SectionHeading title="Tools I work with." />
+        <div className="mb-10 sm:mb-12">
+          <SectionHeading
+            title="What I Work With."
+            label="TOOLS, TECHNOLOGIES AND AREAS I WORK WITH"
+            description="A combination of data analytics and web development tools that I use to build, explore and solve problems."
+          />
         </div>
 
         {/* Skills container with editorial column dividers */}

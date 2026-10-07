@@ -1,15 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { PROJECTS } from '@/data/projects';
-import { ProjectCategory } from '@/types/portfolio';
-import {
-  getAvailableProjectCategories,
-  filterProjectsByCategory,
-} from '@/lib/projects';
+import { getFeaturedProjects } from '@/lib/projects';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
@@ -31,57 +27,23 @@ function GitHubIcon({ className }: { className?: string }) {
 }
 
 export function Projects() {
-  const [activeCategory, setActiveCategory] = useState<'all' | ProjectCategory>('all');
-
-  // Derive categories dynamically from PROJECTS data
-  const categoryOptions = useMemo(() => {
-    return getAvailableProjectCategories(PROJECTS);
-  }, []);
-
-  // Filter projects dynamically
-  const displayedProjects = useMemo(() => {
-    return filterProjectsByCategory(PROJECTS, activeCategory);
-  }, [activeCategory]);
+  // Always display the top 3 featured projects on the homepage
+  const featuredProjects = getFeaturedProjects(PROJECTS, 3);
 
   return (
     <section id="projects" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
-          <SectionHeading title="Selected Work." />
-
-          {/* Dynamic Category Controls: Only render when more than 1 category has projects */}
-          {categoryOptions.length > 0 && (
-            <div
-              className="flex items-center gap-1.5 p-1 bg-surface border border-border rounded-lg self-start sm:self-end"
-              role="tablist"
-              aria-label="Filter projects by category"
-            >
-              {categoryOptions.map((opt) => {
-                const isSelected = activeCategory === opt.key;
-                return (
-                  <button
-                    key={opt.key}
-                    type="button"
-                    role="tab"
-                    aria-selected={isSelected}
-                    onClick={() => setActiveCategory(opt.key)}
-                    className={`px-3 py-1 text-xs font-mono tracking-wider uppercase transition-colors rounded-md ${
-                      isSelected
-                        ? 'bg-accent text-white font-medium shadow-xs'
-                        : 'text-foreground-secondary hover:text-foreground'
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                );
-              })}
-            </div>
-          )}
+        <div className="mb-10 sm:mb-12">
+          <SectionHeading
+            title="Selected Work."
+            label="FEATURED PROJECTS"
+            description="A few projects I'm proud of, built to learn, explore and solve real problems."
+          />
         </div>
 
-        {/* Projects Grid: 3 columns on desktop */}
+        {/* Curated 3 Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {displayedProjects.map((project) => (
+          {featuredProjects.map((project) => (
             <div
               key={project.name}
               className="group flex flex-col justify-between space-y-3 p-4 rounded-lg border border-border bg-surface/40 hover:bg-surface hover:border-accent/40 transition-all duration-200"
@@ -143,6 +105,19 @@ export function Projects() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View all projects Link */}
+        <div className="mt-8 sm:mt-10 flex justify-end">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 font-mono text-xs sm:text-sm text-foreground-secondary hover:text-accent transition-colors py-1.5"
+          >
+            <span>View all projects</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-1 text-accent">
+              →
+            </span>
+          </Link>
         </div>
       </Reveal>
     </section>

@@ -41,6 +41,3 @@ export const EXPERIENCE: IExperience[] = [
     technologies: ['Node.js', 'Blockchain', 'Deployment', 'React Native'],
   },
 ];
-
-// Alias for backwards compatibility if needed
-export const experienceData = EXPERIENCE;

@@ -33,8 +33,12 @@ export function Experience() {
   return (
     <section id="experience" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
-        <div className="mb-12">
-          <SectionHeading title="Work I've done." />
+        <div className="mb-10 sm:mb-12">
+          <SectionHeading
+            title="Work I've Done."
+            label="PROFESSIONAL EXPERIENCE"
+            description="A timeline of my professional journey so far, with the companies I've worked with."
+          />
         </div>
 
         {/* Experience timeline wrapper */}

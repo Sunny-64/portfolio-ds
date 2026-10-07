@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { navItems } from '@/data/portfolio';
+import { getNavItems } from '@/data/portfolio';
 import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const items = useMemo(() => getNavItems(), []);
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-sm border-b border-border/50 transition-colors duration-200">
@@ -25,7 +26,7 @@ export function Navbar() {
           className="hidden md:flex items-center gap-7 text-xs font-medium tracking-wide uppercase"
           aria-label="Main Navigation"
         >
-          {navItems.map((item) => (
+          {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -59,7 +60,7 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-border bg-surface px-4 py-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-3 font-mono text-sm tracking-wider uppercase">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

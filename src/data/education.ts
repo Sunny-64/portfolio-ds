@@ -31,6 +31,3 @@ export const EDUCATION: IEducation[] = [
     grade: 'A+',
   },
 ];
-
-// Backwards compatibility alias
-export const educationData = EDUCATION;

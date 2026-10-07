@@ -1,13 +1,30 @@
 import { PortfolioData, NavItem } from '@/types/portfolio';
+import { getPublishedPosts } from '@/data/blog';
 
-export const navItems: NavItem[] = [
+export const baseNavItems: NavItem[] = [
   { label: 'Home', href: '#intro' },
-  { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Education', href: '#education' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ];
+
+/**
+ * Dynamically resolves navigation items.
+ * If published blog posts exist, includes 'Blog'.
+ * Omits 'About' because there is no standalone About section.
+ */
+export function getNavItems(): NavItem[] {
+  const publishedPosts = getPublishedPosts();
+  if (publishedPosts.length > 0) {
+    const items = [...baseNavItems];
+    // Insert Blog right before Contact
+    items.splice(items.length - 1, 0, { label: 'Blog', href: '#blog' });
+    return items;
+  }
+  return baseNavItems;
+}
 
 export const portfolioData: PortfolioData = {
   name: 'B SUNNY',
@@ -20,46 +37,44 @@ export const portfolioData: PortfolioData = {
   },
   heroDescription:
     "I'm B Sunny, a developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
-  // location: 'JALANDHAR, INDIA',
+  location: 'JALANDHAR, INDIA',
   ctaPrimary: {
     label: 'View My Work',
     href: '#projects',
   },
   ctaSecondary: {
-    label: 'About Me',
-    href: '#about',
-  },
-  about: {
-    heading: 'A developer exploring data.',
-    paragraphs: [
-      "I'm a software developer with a strong interest in data analysis and building products. I enjoy working with data, finding insights, and turning them into real-world solutions. Currently, I'm focusing on learning data analytics tools and building projects that combine software and data.",
-    ],
-    highlights: [
-      'Analytical Thinking',
-      'Problem Solving',
-      'Continuous Learning',
-      'Building Useful Tools',
-    ],
+    label: 'Get In Touch',
+    href: '#contact',
   },
   contact: {
     heading: "Let's build\nsomething useful.",
-    subheading: 'Open to opportunities and collaborations.',
-    email: 'mailto:bsunny.dev@example.com', // Replace with your actual email address
+    subheading: 'Feel free to reach out for opportunities, collaborations or just a friendly hello.',
+    email: 'mailto:bsunny.dev@example.com',
     socials: [
       {
         platform: 'linkedin',
         label: 'LinkedIn',
-        url: 'https://linkedin.com/in/bsunny', // Replace with your actual LinkedIn profile
+        url: 'https://linkedin.com/in/bsunny',
       },
       {
         platform: 'github',
         label: 'GitHub',
-        url: 'https://github.com/bsunny', // Replace with your actual GitHub profile
+        url: 'https://github.com/Sunny-64',
       },
       {
         platform: 'x',
         label: 'X (Twitter)',
-        url: 'https://x.com/bsunny', // Replace with your actual X profile
+        url: 'https://x.com/bsunny',
+      },
+      {
+        platform: 'discord',
+        label: 'Discord',
+        url: 'https://discord.com',
+      },
+      {
+        platform: 'whatsapp',
+        label: 'WhatsApp',
+        url: 'https://whatsapp.com',
       },
     ],
   },

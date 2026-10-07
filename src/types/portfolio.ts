@@ -4,7 +4,7 @@ export interface NavItem {
 }
 
 export interface SocialLink {
-  platform: 'email' | 'linkedin' | 'github' | 'x';
+  platform: 'email' | 'linkedin' | 'github' | 'x' | 'discord' | 'whatsapp';
   label: string;
   url: string;
 }
@@ -28,11 +28,7 @@ export interface PortfolioData {
     label: string;
     href: string;
   };
-  about: {
-    heading: string;
-    paragraphs: string[];
-    highlights: string[];
-  };
+
   contact: {
     heading: string;
     subheading: string;
@@ -66,15 +62,6 @@ export interface IExperience {
   technologies?: string[];
 }
 
-export interface ICertification {
-  id: string;
-  title: string;
-  organization: string;
-  status?: string;
-  period?: string;
-  description: string;
-}
-
 export interface IEducation {
   id?: string;
   startDate: number;
@@ -96,4 +83,29 @@ export interface IProject {
   github: string;
   techStack: string;
   category: ProjectCategory;
+  featured?: boolean;
+  priority?: number;
+}
+
+export interface NowItem {
+  id: string;
+  category: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  iconName: 'working' | 'learning' | 'reading' | 'playing';
+  coverImage?: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  readingTime: string;
+  category: string;
+  tags: string[];
+  thumbnailUrl: string;
+  published: boolean;
+  featured?: boolean;
 }

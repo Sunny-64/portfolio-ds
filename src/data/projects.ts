@@ -2,6 +2,18 @@ import { IProject } from '@/types/portfolio';
 
 export const PROJECTS: IProject[] = [
   {
+    name: 'Online Journal',
+    imageUrl: '/images/projects/online-journal.png',
+    description:
+      'Online journal is a writing specific platform where users can write their thoughts and share it to others. Users can share their research to other people and journal their entire day.',
+    url: 'https://writejournal.000webhostapp.com/',
+    github: 'https://github.com/Sunny-64/Journal-Project-using-PHP',
+    techStack: 'PHP, HTML, CSS, JavaScript',
+    category: 'web-development',
+    featured: true,
+    priority: 1,
+  },
+  {
     name: 'NFT Marketplace',
     imageUrl: '/images/projects/nft-marketplace.png',
     description:
@@ -10,6 +22,8 @@ export const PROJECTS: IProject[] = [
     github: 'https://github.com/Sunny-64/NFT-marketplace',
     techStack: 'Reactjs, Nodejs, MongoDB, Solidity, Ethereum, Firebase',
     category: 'web-development',
+    featured: true,
+    priority: 2,
   },
   {
     name: 'News App',
@@ -20,16 +34,8 @@ export const PROJECTS: IProject[] = [
     github: 'https://github.com/Sunny-64/News-App',
     techStack: 'Reactjs, Nodejs, Tailwind CSS',
     category: 'web-development',
-  },
-  {
-    name: 'Online Journal',
-    imageUrl: '/images/projects/online-journal.png',
-    description:
-      'Online journal is a writing specific platform where users can write their thoughts and share it to others. Users can share their research to other people and journal their entire day.',
-    url: 'https://writejournal.000webhostapp.com/',
-    github: 'https://github.com/Sunny-64/Journal-Project-using-PHP',
-    techStack: 'PHP, HTML, CSS, JavaScript',
-    category: 'web-development',
+    featured: true,
+    priority: 3,
   },
   {
     name: 'Secrets',
@@ -37,9 +43,11 @@ export const PROJECTS: IProject[] = [
     description:
       'Secrets is a platform where users can share their secrets anonymously. It uses OAuth to provide users multiple ways to register and login like Google and Facebook Authentication.',
     url: 'https://secret-chi.vercel.app/',
-    github: 'https://github.com/Sunny-64/Secret/tree/0b850ed6999ff3aca4d6fd84204f5d12',
+    github: 'https://github.com/Sunny-64/Secret/tree/0b850df531b35ed6999ff3aca4d6fd84204f5d12',
     techStack: 'HTML, CSS, Bootstrap, JavaScript, Nodejs, MongoDB',
     category: 'web-development',
+    featured: false,
+    priority: 4,
   },
   {
     name: 'Simon Game',
@@ -50,6 +58,8 @@ export const PROJECTS: IProject[] = [
     github: 'https://github.com/Sunny-64/100-Days-Of-Web-Development/tree/main/Simon%20game',
     techStack: 'HTML, CSS, JavaScript',
     category: 'web-development',
+    featured: false,
+    priority: 5,
   },
   {
     name: 'Analog Clock',
@@ -60,8 +70,7 @@ export const PROJECTS: IProject[] = [
     github: 'https://github.com/Sunny-64/100-Days-Of-Web-Development/tree/main/Analog%20Clock',
     techStack: 'HTML, CSS, JavaScript',
     category: 'web-development',
+    featured: false,
+    priority: 6,
   },
 ];
-
-// Alias for backwards compatibility if needed
-export const projectsData = PROJECTS;

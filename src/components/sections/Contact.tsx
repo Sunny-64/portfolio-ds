@@ -2,10 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import { Reveal } from '@/components/ui/Reveal';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 
 export function Contact() {
@@ -38,25 +36,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border overflow-hidden">
-      {/* Botanical illustration continued */}
-      {/* <div
-        className="pointer-events-none absolute right-0 bottom-0 w-32 sm:w-44 md:w-56 h-auto opacity-20 dark:opacity-15 select-none z-0"
-        aria-hidden="true"
-      >
-        <Image
-          src="/images/botanical.png"
-          alt=""
-          width={220}
-          height={400}
-          className="object-contain ml-auto"
-        />
-      </div> */}
-
       <Reveal className="relative z-10">
-        <div className="mb-10">
-          <SectionHeading number="07" label="CONTACT" />
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Heading */}
           <div className="md:col-span-6 lg:col-span-6">

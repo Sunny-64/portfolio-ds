@@ -1,25 +1,64 @@
 'use client';
 
-import React from 'react';
-import { experienceData } from '@/data/experience';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import { EXPERIENCE } from '@/data/experience';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ExperienceItem } from '@/components/ui/ExperienceItem';
 
 export function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
+
+  // Motion scroll-linked tracking on the Experience container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 75%', 'end 50%'],
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    // Determine which item is currently reached
+    const total = EXPERIENCE.length;
+    if (total === 0) return;
+
+    // Threshold boundaries for activation
+    const calculatedIndex = Math.min(
+      total - 1,
+      Math.max(0, Math.floor(latest * total * 1.1))
+    );
+    setActiveItemIndex(calculatedIndex);
+  });
+
   return (
     <section id="experience" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
         <div className="mb-12">
-          <SectionHeading number="04" label="EXPERIENCE" title="Work I've done." />
+          <SectionHeading title="Work I've done." />
         </div>
 
-        <div className="max-w-3xl">
-          {experienceData.map((item, index) => (
+        {/* Experience timeline wrapper */}
+        <div ref={containerRef} className="relative max-w-3xl">
+          {/* Animated Overlay Progress Line (ScaleY from top) */}
+          <div
+            className="absolute left-[7px] sm:left-[9px] top-3 bottom-10 w-[2px] pointer-events-none z-10"
+            aria-hidden="true"
+          >
+            <motion.div
+              style={{
+                scaleY: scrollYProgress,
+                transformOrigin: 'top',
+              }}
+              className="w-full h-full bg-accent rounded-full will-change-transform motion-reduce:hidden"
+            />
+          </div>
+
+          {EXPERIENCE.map((item, index) => (
             <ExperienceItem
               key={item.id}
               item={item}
-              isLast={index === experienceData.length - 1}
+              isActive={index <= activeItemIndex}
+              isLast={index === EXPERIENCE.length - 1}
             />
           ))}
         </div>

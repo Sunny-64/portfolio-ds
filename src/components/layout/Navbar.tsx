@@ -11,7 +11,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-sm border-b border-border/50 transition-colors duration-200">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link
           href="#intro"

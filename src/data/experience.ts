@@ -1,28 +1,46 @@
-import { ExperienceItemData } from '@/types/portfolio';
+import { IExperience } from '@/types/portfolio';
 
-export const experienceData: ExperienceItemData[] = [
+export const EXPERIENCE: IExperience[] = [
   {
     id: 'rocketpos',
     company: 'RocketPOS',
     role: 'Frontend Developer',
-    period: '2023 – 2024',
+    profile: 'Frontend Developer',
+    startDate: 'August 2025',
+    endDate: 'July 2026',
+    period: 'August 2025 – July 2026',
+    experienceType: 'Full-time',
     description:
-      'Built and maintained web applications, template systems and customer-facing products using React, TypeScript and Tailwind.',
+      'Worked as a Frontend Developer building and improving web applications and customer-facing products using modern frontend technologies.',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS'],
   },
   {
-    id: 'aeriax-ventures',
-    company: 'AeriaX Ventures',
-    role: 'Backend Developer Intern',
-    period: '2022 – 2023',
+    id: 'aeria',
+    company: 'Aeria',
+    role: 'Full Stack Developer',
+    profile: 'Full Stack Developer',
+    startDate: 'July 2024',
+    endDate: 'January 2025',
+    period: 'July 2024 – January 2025',
+    experienceType: 'Internship / Full-time',
     description:
-      'Worked on multiple services using NestJS, PostgreSQL and Hasura.',
+      'I worked as a Backend Developer at Aeria. My day-to-day work involved writing APIs on the backend, making sure they worked reliably, and integrating them with the frontend.',
+    technologies: ['NestJS', 'PostgreSQL', 'APIs', 'Frontend Integration'],
   },
   {
-    id: 'qservices-inc',
-    company: 'Qservices Inc',
-    role: 'Assistant Software Developer Intern',
-    period: '2021 – 2022',
+    id: 'qservices',
+    company: 'Qservices',
+    role: 'Node.js + Blockchain Developer',
+    profile: 'Node.js + Blockchain Developer',
+    startDate: 'April 2023',
+    endDate: 'November 2023',
+    period: 'April 2023 – November 2023',
+    experienceType: 'Internship',
     description:
-      'Worked on blockchain based products and mobile applications.',
+      'During my internship, I worked with Node.js and Blockchain and implemented them across several projects. I developed applications from scratch through hosting and deployment, and also worked with React Native toward the end of my internship.',
+    technologies: ['Node.js', 'Blockchain', 'Deployment', 'React Native'],
   },
 ];
+
+// Alias for backwards compatibility if needed
+export const experienceData = EXPERIENCE;

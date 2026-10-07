@@ -52,29 +52,48 @@ export interface SkillItem {
   iconName: 'data-analysis' | 'sql' | 'excel' | 'power-bi' | 'python' | 'web-dev';
 }
 
-export interface ExperienceItemData {
+export interface IExperience {
   id: string;
   company: string;
   role: string;
   period: string;
+  startDate: string;
+  endDate: string;
+  experienceType?: string;
   description: string;
+  profile: string;
+  location?: string;
+  technologies?: string[];
 }
 
-export interface ProjectItemData {
+export interface ICertification {
   id: string;
   title: string;
-  technologies: string[];
+  organization: string;
+  status?: string;
+  period?: string;
   description: string;
-  image: string;
-  href: string;
-  githubUrl?: string;
 }
 
-export interface EducationItemData {
-  id: string;
-  degree: string;
-  institution: string;
-  location: string;
-  period: string;
-  description?: string;
+export interface IEducation {
+  id?: string;
+  startDate: number;
+  endDate: number;
+  education: string;
+  course: string | null;
+  description: string;
+  graduatedFrom: string;
+  grade: string;
+}
+
+export type ProjectCategory = 'web-development' | 'data-analytics';
+
+export interface IProject {
+  name: string;
+  imageUrl: string;
+  description: string;
+  url: string;
+  github: string;
+  techStack: string;
+  category: ProjectCategory;
 }

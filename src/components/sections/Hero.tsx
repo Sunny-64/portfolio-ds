@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import { ArrowLink } from '@/components/ui/ArrowLink';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function Hero() {
   const { headline, positioning, heroDescription, location, ctaPrimary, ctaSecondary } =
@@ -13,31 +12,26 @@ export function Hero() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
         {/* Left Column: Content */}
         <div className="md:col-span-7 lg:col-span-7 space-y-6">
-          {/* 1. Section Label */}
-          <div className="animate-hero-1">
-            <SectionHeading number="01" label="INTRO" />
-          </div>
-
-          {/* 2. Primary Headline */}
+          {/* Primary Headline */}
           <h1 className="animate-hero-2 font-serif text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal tracking-tight leading-[1.12]">
             {headline.line1} <br />
             {headline.line2} <br />
             <span className="text-accent">{headline.accentLine}</span>
           </h1>
 
-          {/* 3. Positioning */}
+          {/* Positioning */}
           <div className="animate-hero-3 text-sm sm:text-base font-semibold tracking-wide text-foreground flex items-center gap-2">
             <span>{positioning.split('×')[0].trim()}</span>
             <span className="text-accent">×</span>
             <span>{positioning.split('×')[1].trim()}</span>
           </div>
 
-          {/* 4. Description */}
+          {/* Description */}
           <p className="animate-hero-4 text-foreground-secondary text-sm sm:text-base leading-relaxed max-w-xl font-light">
             {heroDescription}
           </p>
 
-          {/* 5. Buttons */}
+          {/* Buttons */}
           <div className="animate-hero-5 flex flex-wrap items-center gap-3.5 pt-2">
             <ArrowLink href={ctaPrimary.href} variant="primary">
               {ctaPrimary.label}
@@ -48,7 +42,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right Column: 6. Profile Image Composition */}
+        {/* Right Column: Profile Image Composition */}
         <div className="animate-hero-6 md:col-span-5 lg:col-span-5 flex flex-col items-center md:items-end justify-center">
           <div className="relative w-fit">
             {/* Top-Right Blue Geometric Accent */}
@@ -70,7 +64,6 @@ export function Hero() {
                 alt="B Sunny - Data Analyst and Software Developer"
                 fill
                 priority
-                sizes=""
                 className="object-cover"
               />
             </div>
@@ -84,7 +77,7 @@ export function Hero() {
             {/* Location Metadata */}
             <div className="mt-4 text-right font-mono text-[10px] sm:text-xs tracking-widest text-foreground-muted leading-tight">
               <div>BASED IN</div>
-              <div>{location}</div>
+              <div>{location || 'JALANDHAR, INDIA'}</div>
             </div>
           </div>
         </div>

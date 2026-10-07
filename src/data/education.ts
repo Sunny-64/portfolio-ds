@@ -1,19 +1,36 @@
-import { EducationItemData } from '@/types/portfolio';
+import { IEducation } from '@/types/portfolio';
 
-export const educationData: EducationItemData[] = [
+export const EDUCATION: IEducation[] = [
   {
-    id: 'bachelors-degree',
-    degree: "Bachelor's Degree",
-    institution: 'University details (add your university name)',
-    location: 'Jalandhar, Punjab',
-    period: '2018 – 2021',
+    startDate: 2023,
+    endDate: 2026,
+    education: 'BTech',
+    course: 'Computer Science & Engineering',
+    description:
+      "I am currently a second year student pursuing BTech in correspondence. I'm gaining knowledge and experience throughout my graduation.",
+    graduatedFrom: 'St Solider Institute of Engineering and Technology',
+    grade: '7.5',
   },
   {
-    id: 'newton-school',
-    degree: 'Data Science Program',
-    institution: 'Newton School',
-    location: 'Online',
-    period: '2023 – 2024',
-    description: 'Data analytics, SQL, Python, machine learning fundamentals.',
+    startDate: 2020,
+    endDate: 2023,
+    education: 'Diploma',
+    course: 'Computer Science & Engineering',
+    description:
+      'I completed my Diploma in CSE where I learned everything about Tech from scratch with zero knowledge I enrolled into Diploma. Throughout the three years of my journey in Diploma I explored Hackathons, Devfests and participated in a few tech fests.',
+    graduatedFrom: 'Mehr Chand Polytechnic College',
+    grade: '7.5',
+  },
+  {
+    startDate: 2019,
+    endDate: 2020,
+    education: 'Matriculation',
+    course: null,
+    description: 'I completed my 10th class with outstanding A+ grade.',
+    graduatedFrom: 'A.P.S Public Senior Secondary School',
+    grade: 'A+',
   },
 ];
+
+// Backwards compatibility alias
+export const educationData = EDUCATION;

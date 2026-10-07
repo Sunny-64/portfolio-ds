@@ -11,7 +11,7 @@ export function Skills() {
     <section id="skills" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
         <div className="mb-10">
-          <SectionHeading number="03" label="SKILLS" title="Tools I work with." />
+          <SectionHeading title="Tools I work with." />
         </div>
 
         {/* Skills container with editorial column dividers */}

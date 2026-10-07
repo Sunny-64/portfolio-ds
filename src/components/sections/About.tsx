@@ -3,7 +3,6 @@
 import React from 'react';
 import { portfolioData } from '@/data/portfolio';
 import { Reveal } from '@/components/ui/Reveal';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export function About() {
   const { about } = portfolioData;
@@ -11,10 +10,6 @@ export function About() {
   return (
     <section id="about" className="pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-border">
       <Reveal>
-        <div className="mb-10">
-          <SectionHeading number="02" label="ABOUT" />
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Heading and narrative */}
           <div className="md:col-span-6 lg:col-span-6 space-y-5">

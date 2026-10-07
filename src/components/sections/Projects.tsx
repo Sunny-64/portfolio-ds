@@ -46,6 +46,7 @@ export function Projects() {
           {featuredProjects.map((project) => (
             <div
               key={project.name}
+              data-cursor="project"
               className="group flex flex-col justify-between space-y-3 p-4 rounded-lg border border-border bg-surface/40 hover:bg-surface hover:border-accent/40 transition-all duration-200"
             >
               <div className="space-y-3">

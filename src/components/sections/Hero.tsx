@@ -8,7 +8,10 @@ export function Hero() {
     portfolioData;
 
   return (
-    <section id="intro" className="pt-12 sm:pt-20 pb-16 sm:pb-24">
+    <section
+      id="intro"
+      className="min-h-[calc(100vh-4rem)] min-h-[calc(100svh-4rem)] flex flex-col justify-center py-12 sm:py-16 md:py-20"
+    >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
         {/* Left Column: Content */}
         <div className="md:col-span-7 lg:col-span-7 space-y-6">

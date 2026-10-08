@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getPublishedPosts } from '@/data/blog';
+import { PROJECTS } from '@/data/projects';
 import { absoluteUrl } from '@/lib/site';
 
 /**
@@ -39,6 +40,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     });
+  }
+
+  // Dynamically include projects (showOnPortfolio = true)
+  for (const project of PROJECTS) {
+    if (project.showOnPortfolio !== false) {
+      routes.push({
+        url: absoluteUrl(`/projects/${project.slug}`),
+        lastModified,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      });
+    }
   }
 
   return routes;

@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import { ArrowLink } from '@/components/ui/ArrowLink';
+import { trackInteraction } from '@/lib/interactions';
 
 export function Hero() {
   const { headline, positioning, heroDescription, resumeUrl, ctaPrimary, ctaSecondary } =
@@ -83,6 +86,7 @@ export function Hero() {
                 href={resumeUrl || 'https://drive.google.com/file/d/1uDbMH-rGIP4eviZ3H_NzlJXuLC4G-aeg/view?usp=sharing'}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackInteraction({ type: 'resume_click' })}
                 aria-label="View B Sunny Resume in a new tab"
                 className="group inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs tracking-widest uppercase text-foreground-secondary hover:text-accent transition-colors"
               >

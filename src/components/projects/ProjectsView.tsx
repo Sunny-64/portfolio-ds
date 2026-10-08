@@ -12,6 +12,7 @@ import {
   getAvailableProjectCategories,
   filterProjectsByCategory,
 } from '@/lib/projects';
+import { trackInteraction } from '@/lib/interactions';
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -159,6 +160,12 @@ export function ProjectsView() {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() =>
+                            trackInteraction({
+                              type: 'project_github_click',
+                              target: project.slug,
+                            })
+                          }
                           aria-label={`View source code of ${project.name} on GitHub`}
                           className="text-foreground-muted hover:text-foreground p-1 transition-colors"
                         >
@@ -170,6 +177,12 @@ export function ProjectsView() {
                           href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() =>
+                            trackInteraction({
+                              type: 'project_external_click',
+                              target: project.slug,
+                            })
+                          }
                           aria-label={`Visit live demo for ${project.name}`}
                           className="text-foreground-muted hover:text-accent p-1 transition-colors"
                         >

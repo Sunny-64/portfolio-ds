@@ -77,6 +77,7 @@ export interface IEducation {
 export type ProjectCategory = 'web-development' | 'data-analytics';
 
 export interface IProject {
+  slug: string;
   name: string;
   imageUrl: string;
   description: string;

@@ -2,6 +2,7 @@ import { IProject } from '@/types/portfolio';
 
 export const PROJECTS: IProject[] = [
   {
+    slug: 'online-journal',
     name: 'Online Journal',
     imageUrl: '/images/projects/online-journal.png',
     description:
@@ -12,8 +13,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: true,
     priority: 1,
+    showOnPortfolio: true,
   },
   {
+    slug: 'nft-marketplace',
     name: 'NFT Marketplace',
     imageUrl: '/images/projects/nft-marketplace.png',
     description:
@@ -24,8 +27,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: true,
     priority: 2,
+    showOnPortfolio: true,
   },
   {
+    slug: 'news-app',
     name: 'News App',
     imageUrl: '/images/projects/news-app.png',
     description:
@@ -36,8 +41,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: true,
     priority: 3,
+    showOnPortfolio: true,
   },
   {
+    slug: 'secrets',
     name: 'Secrets',
     imageUrl: '/images/projects/secrets.png',
     description:
@@ -48,8 +55,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: false,
     priority: 4,
+    showOnPortfolio: true,
   },
   {
+    slug: 'simon-game',
     name: 'Simon Game',
     imageUrl: '/images/projects/simon-game.png',
     description:
@@ -60,8 +69,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: false,
     priority: 5,
+    showOnPortfolio: true,
   },
   {
+    slug: 'analog-clock',
     name: 'Analog Clock',
     imageUrl: '/images/projects/analog-clock.png',
     description:
@@ -72,5 +83,10 @@ export const PROJECTS: IProject[] = [
     category: 'web-development',
     featured: false,
     priority: 6,
+    showOnPortfolio: true,
   },
 ];
+
+export function getProjectBySlug(slug: string): IProject | undefined {
+  return PROJECTS.find((project) => project.slug === slug);
+}

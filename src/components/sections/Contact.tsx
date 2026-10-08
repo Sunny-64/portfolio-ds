@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
 import { Reveal } from '@/components/ui/Reveal';
+import { trackInteraction } from '@/lib/interactions';
 
 export function Contact() {
   const { contact } = portfolioData;
@@ -12,6 +13,9 @@ export function Contact() {
 
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // Track email click interaction asynchronously
+    trackInteraction({ type: 'email_click' });
 
     // 1. Copy email address to clipboard
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -114,6 +118,7 @@ export function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackInteraction({ type: 'social_click', target: social.platform })}
                       aria-label={`Visit B Sunny on ${social.label}`}
                       className="p-1.5 rounded hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                     >
@@ -129,6 +134,7 @@ export function Contact() {
                 <button
                   type="button"
                   onClick={() => {
+                    trackInteraction({ type: 'email_copy' });
                     if (typeof navigator !== 'undefined' && navigator.clipboard) {
                       navigator.clipboard.writeText('sunny6464n@gmail.com');
                       setCopied(true);

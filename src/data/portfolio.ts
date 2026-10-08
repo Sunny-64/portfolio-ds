@@ -38,6 +38,7 @@ export const portfolioData: PortfolioData = {
   heroDescription:
     "I'm B Sunny, a developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
   location: 'JALANDHAR, INDIA',
+  resumeUrl: 'https://drive.google.com/file/d/1uDbMH-rGIP4eviZ3H_NzlJXuLC4G-aeg/view?usp=sharing',
   ctaPrimary: {
     label: 'View My Work',
     href: '#projects',
@@ -49,12 +50,12 @@ export const portfolioData: PortfolioData = {
   contact: {
     heading: "Let's build\nsomething useful.",
     subheading: 'Feel free to reach out for opportunities, collaborations or just a friendly hello.',
-    email: 'mailto:bsunny.dev@example.com',
+    email: 'mailto:sunny6464n@gmail.com',
     socials: [
       {
         platform: 'linkedin',
         label: 'LinkedIn',
-        url: 'https://linkedin.com/in/bsunny',
+        url: 'https://www.linkedin.com/in/b-sunny-a97579219',
       },
       {
         platform: 'github',
@@ -64,17 +65,17 @@ export const portfolioData: PortfolioData = {
       {
         platform: 'x',
         label: 'X (Twitter)',
-        url: 'https://x.com/bsunny',
+        url: 'https://x.com/_Sunny64',
       },
       {
         platform: 'discord',
         label: 'Discord',
-        url: 'https://discord.com',
+        url: 'https://discord.com/users/919598728485154897',
       },
       {
         platform: 'whatsapp',
         label: 'WhatsApp',
-        url: 'https://whatsapp.com',
+        url: 'https://wa.me/917973699425',
       },
     ],
   },

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -17,7 +19,7 @@ export function ArrowLink({
   external = false,
 }: ArrowLinkProps) {
   const baseClasses =
-    'group inline-flex items-center gap-1.5 transition-all duration-200 text-sm';
+    'group inline-flex items-center gap-1.5 transition-all duration-200 text-sm cursor-pointer select-none';
 
   const variantClasses = {
     primary:
@@ -30,15 +32,46 @@ export function ArrowLink({
       'text-accent hover:text-accent-hover font-medium',
   };
 
-  const targetProps = external
-    ? { target: '_blank', rel: 'noopener noreferrer' }
-    : {};
+  const isInternalRoute = href.startsWith('/') && !href.startsWith('//');
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.slice(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+      }
+    }
+  };
+
+  // For mailto, hash anchor links, or external URLs, use native <a> tag
+  if (!isInternalRoute) {
+    const isExternal = external || href.startsWith('http');
+    const targetProps = isExternal
+      ? { target: '_blank', rel: 'noopener noreferrer' }
+      : {};
+
+    return (
+      <a
+        href={href}
+        onClick={handleClick}
+        className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+        {...targetProps}
+      >
+        <span>{children}</span>
+        <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1">
+          →
+        </span>
+      </a>
+    );
+  }
 
   return (
     <Link
       href={href}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-      {...targetProps}
     >
       <span>{children}</span>
       <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1">

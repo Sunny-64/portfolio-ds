@@ -20,6 +20,7 @@ export interface PortfolioData {
   };
   heroDescription: string;
   location?: string;
+  resumeUrl?: string;
   ctaPrimary: {
     label: string;
     href: string;

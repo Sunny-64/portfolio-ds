@@ -73,9 +73,12 @@ export default function RootLayout({
                   var params = new URLSearchParams(window.location.search);
                   var queryTheme = params.get('theme');
                   var storedTheme = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                   var theme = queryTheme || storedTheme;
-                  if (theme === 'dark' || (!theme && prefersDark)) {
+                  if (queryTheme) {
+                    try { localStorage.setItem('theme', queryTheme); } catch (e) {}
+                  }
+                  // Default to light mode; only activate dark if explicitly saved by user
+                  if (theme === 'dark') {
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');

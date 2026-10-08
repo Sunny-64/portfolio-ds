@@ -203,7 +203,7 @@ export function CustomCursor() {
           duration: 0.22,
           ease: [0.16, 1, 0.3, 1],
         }}
-        className="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center will-change-transform select-none"
       >
         <AnimatePresence>
           {cursorVariant === 'project' && isVisible && (
@@ -232,7 +232,7 @@ export function CustomCursor() {
           duration: 0.18,
           ease: [0.16, 1, 0.3, 1],
         }}
-        className="fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent will-change-transform select-none"
       />
     </div>
   );

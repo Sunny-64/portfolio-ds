@@ -4,7 +4,7 @@ import { portfolioData } from '@/data/portfolio';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 
 export function Hero() {
-  const { headline, positioning, heroDescription, location, ctaPrimary, ctaSecondary } =
+  const { headline, positioning, heroDescription, resumeUrl, ctaPrimary, ctaSecondary } =
     portfolioData;
 
   return (
@@ -74,10 +74,20 @@ export function Hero() {
               aria-hidden="true"
             />
 
-            {/* Location Metadata */}
-            <div className="mt-4 text-right font-mono text-[10px] sm:text-xs tracking-widest text-foreground-muted leading-tight">
-              <div>BASED IN</div>
-              <div>{location || 'JALANDHAR, INDIA'}</div>
+            {/* Resume Link */}
+            <div className="mt-4 text-right">
+              <a
+                href={resumeUrl || 'https://drive.google.com/file/d/1uDbMH-rGIP4eviZ3H_NzlJXuLC4G-aeg/view?usp=sharing'}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View B Sunny Resume in a new tab"
+                className="group inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs tracking-widest uppercase text-foreground-secondary hover:text-accent transition-colors"
+              >
+                <span>Resume</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent font-sans">
+                  ↗
+                </span>
+              </a>
             </div>
           </div>
         </div>

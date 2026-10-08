@@ -1,13 +1,34 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Check } from 'lucide-react';
 import { portfolioData } from '@/data/portfolio';
 import { Reveal } from '@/components/ui/Reveal';
-import { ArrowLink } from '@/components/ui/ArrowLink';
 
 export function Contact() {
   const { contact } = portfolioData;
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // 1. Copy email address to clipboard
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText('sunny6464n@gmail.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    }
+
+    // 2. Open Gmail compose window in a new tab
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=sunny6464n@gmail.com';
+    const win = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+
+    // 3. Fallback to OS mailto protocol if popup was blocked or preferred
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = 'mailto:sunny6464n@gmail.com';
+    }
+  };
 
   const getSocialIcon = (platform: string) => {
     switch (platform) {
@@ -63,25 +84,62 @@ export function Contact() {
               {contact.subheading}
             </p>
 
-            <div className="flex flex-wrap items-center gap-5 pt-2">
-              <ArrowLink href={contact.email} variant="primary">
-                Email Me
-              </ArrowLink>
+            <div className="space-y-3 pt-2">
+              <div className="flex flex-wrap items-center gap-5">
+                <a
+                  href="mailto:sunny6464n@gmail.com"
+                  onClick={handleEmailClick}
+                  className="group inline-flex items-center gap-2 bg-foreground text-background dark:bg-accent dark:text-surface px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-foreground/90 dark:hover:bg-accent-hover transition-all duration-200 shadow-sm cursor-pointer select-none"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span>Copied sunny6464n@gmail.com!</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Email Me</span>
+                      <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1">
+                        →
+                      </span>
+                    </>
+                  )}
+                </a>
 
-              {/* Social Icons */}
-              <div className="flex items-center gap-4 text-foreground-secondary">
-                {contact.socials.map((social) => (
-                  <Link
-                    key={social.platform}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit B Sunny on ${social.label}`}
-                    className="p-1.5 rounded hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                  >
-                    {getSocialIcon(social.platform)}
-                  </Link>
-                ))}
+                {/* Social Icons */}
+                <div className="flex items-center gap-4 text-foreground-secondary">
+                  {contact.socials.map((social) => (
+                    <Link
+                      key={social.platform}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit B Sunny on ${social.label}`}
+                      className="p-1.5 rounded hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      {getSocialIcon(social.platform)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Direct email display */}
+              <div className="flex items-center gap-2 font-mono text-xs text-foreground-muted">
+                <span>Direct:</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                      navigator.clipboard.writeText('sunny6464n@gmail.com');
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 3000);
+                    }
+                  }}
+                  className="text-foreground-secondary hover:text-accent transition-colors underline underline-offset-2 cursor-pointer"
+                  title="Click to copy email address"
+                >
+                  sunny6464n@gmail.com
+                </button>
               </div>
             </div>
           </div>

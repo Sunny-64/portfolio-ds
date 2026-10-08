@@ -1,11 +1,26 @@
-'use client';
-
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { getPublishedPosts } from '@/data/blog';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Thoughts, technical write-ups, and lessons learned in data analytics and software engineering by B Sunny.',
+  alternates: {
+    canonical: '/blog',
+  },
+  openGraph: {
+    title: 'Blog — B Sunny',
+    description:
+      'Thoughts, technical write-ups, and lessons learned in data analytics and software engineering by B Sunny.',
+    url: '/blog',
+    type: 'website',
+  },
+};
 
 export default function BlogArchivePage() {
   const posts = getPublishedPosts();
@@ -44,9 +59,32 @@ export default function BlogArchivePage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-10">
             {posts.map((post) => (
-              <div key={post.slug} className="p-4 border rounded-lg">
-                {post.title}
-              </div>
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block p-6 bg-surface border border-border hover:border-accent/40 transition-colors rounded-none"
+              >
+                <div className="font-mono text-[11px] text-accent font-semibold tracking-wider uppercase mb-2">
+                  {post.category}
+                </div>
+                <h2 className="font-serif text-xl text-foreground font-normal group-hover:text-accent transition-colors mb-2">
+                  {post.title}
+                </h2>
+                <p className="text-foreground-secondary text-sm font-light line-clamp-2 mb-4 leading-relaxed">
+                  {post.description}
+                </p>
+                <div className="flex items-center gap-3 text-xs font-mono text-foreground-muted">
+                  <span className="inline-flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {post.publishedAt}
+                  </span>
+                  <span>•</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {post.readingTime}
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         )}

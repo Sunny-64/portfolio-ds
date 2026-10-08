@@ -22,3 +22,11 @@ export function getFeaturedBlogPosts(limit = 3): BlogPost[] {
     .filter((post) => post.featured ?? true)
     .slice(0, limit);
 }
+
+/**
+ * Returns a blog post by its slug.
+ */
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return BLOG_POSTS.find((post) => post.slug === slug);
+}
+

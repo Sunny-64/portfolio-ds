@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
@@ -8,10 +9,37 @@ import { Experience } from '@/components/sections/Experience';
 import { WhatImUpTo } from '@/components/sections/WhatImUpTo';
 import { Blog } from '@/components/sections/Blog';
 import { Contact } from '@/components/sections/Contact';
+import { getPersonSchema, getWebSiteSchema } from '@/lib/schema';
+import { siteConfig } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: '/',
+    type: 'website',
+  },
+};
 
 export default function Home() {
+  const personSchema = getPersonSchema();
+  const webSiteSchema = getWebSiteSchema();
+
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+      />
       <Navbar />
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Hero */}

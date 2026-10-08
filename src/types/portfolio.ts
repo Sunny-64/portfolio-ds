@@ -86,6 +86,7 @@ export interface IProject {
   category: ProjectCategory;
   featured?: boolean;
   priority?: number;
+  showOnPortfolio?: boolean;
 }
 
 export interface NowItem {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Newsreader } from 'next/font/google';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { siteConfig } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({
@@ -23,33 +24,69 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: 'B Sunny — Data Analyst & Software Developer',
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: 'B Sunny — Data Analyst × Software Developer',
+    template: '%s — B Sunny',
+  },
   description:
-    "I'm a software developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
+    "I'm B Sunny, a developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
   keywords: [
     'B Sunny',
     'Data Analyst',
     'Software Developer',
+    'Data Analytics',
     'Portfolio',
     'Python',
     'SQL',
     'Power BI',
     'React',
   ],
-  authors: [{ name: 'B Sunny' }],
+  authors: [{ name: 'B Sunny', url: siteConfig.url }],
+  creator: 'B Sunny',
+  publisher: 'B Sunny',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: 'B Sunny — Data Analyst & Software Developer',
+    title: 'B Sunny — Data Analyst × Software Developer',
     description:
-      "I'm a software developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
+      "I'm B Sunny, a developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
     type: 'website',
     locale: 'en_US',
     siteName: 'B Sunny Portfolio',
+    url: siteConfig.url,
+    images: [
+      {
+        url: '/images/profile/sunny.png',
+        width: 800,
+        height: 1000,
+        alt: 'B Sunny — Data Analyst × Software Developer',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B Sunny — Data Analyst & Software Developer',
+    title: 'B Sunny — Data Analyst × Software Developer',
     description:
-      "I'm a software developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
+      "I'm B Sunny, a developer transitioning into data analytics, combining problem solving with data to build useful products and insights.",
+    creator: '@_Sunny64',
+    images: ['/images/profile/sunny.png'],
+  },
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
 };
 

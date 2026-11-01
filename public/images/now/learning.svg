@@ -1,0 +1,76 @@
+<svg width="400" height="600" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14161B"/>
+      <stop offset="50%" stop-color="#101115"/>
+      <stop offset="100%" stop-color="#0A0B0E"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2F6FED" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#6EA8FF" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#2F6FED" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#6EA8FF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#2F6FED" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="600" rx="16" fill="url(#bgGrad)"/>
+  <rect width="398" height="598" x="1" y="1" rx="15" stroke="#262A33" stroke-width="1"/>
+
+  <!-- Radial highlight -->
+  <circle cx="200" cy="240" r="140" fill="url(#blueGlow)"/>
+
+  <!-- Subtle grid lines -->
+  <g opacity="0.15" stroke="#6EA8FF" stroke-width="0.75" stroke-dasharray="3 3">
+    <line x1="40" y1="120" x2="360" y2="120"/>
+    <line x1="40" y1="180" x2="360" y2="180"/>
+    <line x1="40" y1="240" x2="360" y2="240"/>
+    <line x1="40" y1="300" x2="360" y2="300"/>
+    <line x1="40" y1="360" x2="360" y2="360"/>
+    
+    <line x1="100" y1="80" x2="100" y2="400"/>
+    <line x1="200" y1="80" x2="200" y2="400"/>
+    <line x1="300" y1="80" x2="300" y2="400"/>
+  </g>
+
+  <!-- Elegant Data Curve Chart -->
+  <path d="M 60 320 C 120 310, 150 260, 200 230 C 250 200, 290 150, 340 130" 
+        stroke="url(#lineGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <path d="M 60 350 C 130 340, 170 300, 220 280 C 270 260, 300 220, 340 200" 
+        stroke="#2F6FED" stroke-width="1.5" stroke-opacity="0.4" fill="none" stroke-dasharray="4 4"/>
+
+  <!-- Data points -->
+  <circle cx="200" cy="230" r="4.5" fill="#6EA8FF" stroke="#101115" stroke-width="2"/>
+  <circle cx="340" cy="130" r="4.5" fill="#6EA8FF" stroke="#101115" stroke-width="2"/>
+  <circle cx="120" cy="300" r="3.5" fill="#2F6FED"/>
+
+  <!-- Central Icon Graphic (Minimalist Book / Analytics) -->
+  <g transform="translate(176, 216)">
+    <rect x="-2" y="-2" width="52" height="52" rx="14" fill="#181B22" stroke="#2F6FED" stroke-width="1.5"/>
+    <path d="M12 36V16C12 14.5 13.5 13 16 13C19 13 22 15 24 16C26 15 29 13 32 13C34.5 13 36 14.5 36 16V36C36 34.5 34.5 33 32 33C29 33 26 35 24 36C22 35 19 33 16 33C13.5 33 12 34.5 12 36Z" 
+          stroke="#6EA8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="200" y="440" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+        font-size="12" font-weight="600" fill="#6EA8FF" letter-spacing="2" text-anchor="middle">
+    DATA SCIENCE &amp; ANALYTICS
+  </text>
+  
+  <text x="200" y="470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+        font-size="18" font-weight="700" fill="#F2F2F0" text-anchor="middle">
+    Curriculum Journey
+  </text>
+  
+  <text x="200" y="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" 
+        font-size="11" font-weight="400" fill="#8A8A8A" text-anchor="middle">
+    Excel • SQL • Python
+  </text>
+
+  <!-- Subtle bottom decorative line -->
+  <line x1="160" y1="530" x2="240" y2="530" stroke="#2F6FED" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg>

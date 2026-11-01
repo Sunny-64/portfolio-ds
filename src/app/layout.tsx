@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Newsreader } from 'next/font/google';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { PageTracker } from '@/components/analytics/PageTracker';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
@@ -127,6 +128,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent-soft selection:text-accent">
+        <PageTracker />
         <CustomCursor />
         {children}
       </body>

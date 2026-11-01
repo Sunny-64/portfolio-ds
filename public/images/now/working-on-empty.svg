@@ -1,0 +1,61 @@
+<svg width="400" height="600" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14161B"/>
+      <stop offset="50%" stop-color="#101115"/>
+      <stop offset="100%" stop-color="#0A0B0E"/>
+    </linearGradient>
+    <linearGradient id="blueGlow2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2F6FED" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#6EA8FF" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="600" rx="16" fill="url(#bgGrad2)"/>
+  <rect width="398" height="598" x="1" y="1" rx="15" stroke="#262A33" stroke-width="1"/>
+
+  <!-- Radial highlight -->
+  <circle cx="200" cy="250" r="130" fill="url(#blueGlow2)"/>
+
+  <!-- Subtle Blueprint Grid Pattern -->
+  <g opacity="0.1" stroke="#6EA8FF" stroke-width="0.75" stroke-dasharray="2 4">
+    <line x1="40" y1="140" x2="360" y2="140"/>
+    <line x1="40" y1="200" x2="360" y2="200"/>
+    <line x1="40" y1="260" x2="360" y2="260"/>
+    <line x1="40" y1="320" x2="360" y2="320"/>
+    <line x1="40" y1="380" x2="360" y2="380"/>
+
+    <line x1="120" y1="80" x2="120" y2="440"/>
+    <line x1="200" y1="80" x2="200" y2="440"/>
+    <line x1="280" y1="80" x2="280" y2="440"/>
+  </g>
+
+  <!-- Central Laptop Wireframe -->
+  <g transform="translate(160, 210)" stroke="#6EA8FF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Screen -->
+    <rect x="8" y="12" width="64" height="42" rx="4" stroke-opacity="0.8"/>
+    <!-- Screen base -->
+    <path d="M0 62L8 54H72L80 62H0Z" stroke-opacity="0.9" fill="#181B22"/>
+    <!-- Terminal prompt line -->
+    <line x1="20" y1="26" x2="36" y2="26" stroke-opacity="0.4"/>
+    <line x1="20" y1="34" x2="52" y2="34" stroke-opacity="0.3"/>
+    <line x1="20" y1="42" x2="40" y2="42" stroke-opacity="0.5"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="200" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+        font-size="11" font-weight="600" fill="#6EA8FF" letter-spacing="2" text-anchor="middle">
+    ACTIVE PROJECTS
+  </text>
+  
+  <text x="200" y="465" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+        font-size="16" font-weight="600" fill="#A5A5A5" text-anchor="middle">
+    Standby Mode
+  </text>
+  
+  <text x="200" y="495" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" 
+        font-size="11" font-weight="400" fill="#707070" text-anchor="middle">
+    Nothing in progress right now
+  </text>
+</svg>

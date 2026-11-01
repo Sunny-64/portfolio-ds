@@ -11,6 +11,10 @@ import { Blog } from '@/components/sections/Blog';
 import { Contact } from '@/components/sections/Contact';
 import { getPersonSchema, getWebSiteSchema } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
+import { connection } from 'next/server';
+import { getSectionCards, getCurrentActivities } from '@/lib/activities';
+
+export const instant = false;
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -26,9 +30,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  await connection();
   const personSchema = getPersonSchema();
   const webSiteSchema = getWebSiteSchema();
+  const currentActivities = await getCurrentActivities();
+  const sectionCards = await getSectionCards();
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
@@ -57,8 +64,8 @@ export default function Home() {
         {/* 5. Work I've Done (Scroll-linked experience timeline) */}
         <Experience />
 
-        {/* 6. What I'm Up To (Curated personal items) */}
-        <WhatImUpTo />
+        {/* 6. What I'm Up To (Standardized 4 independent categories) */}
+        <WhatImUpTo initialCards={sectionCards} initialActivities={currentActivities} />
 
         {/* 7. Latest from the Blog (Self-hiding when no published posts) */}
         <Blog />

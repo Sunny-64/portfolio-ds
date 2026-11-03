@@ -80,6 +80,23 @@ async function runTests() {
   const { payload } = await jwtVerify(token, secretKey);
   assert(payload.role === 'admin' && payload.email === adminEmail, 'Admin session token payload verified');
 
+  // Verify that an attacker token forged with a default/fallback secret is rejected
+  let forgedAccepted = false;
+  try {
+    const forgedSecret = new TextEncoder().encode('fallback-secret-at-least-32-chars-long-security-key');
+    const forgedToken = await new SignJWT({ email: 'attacker@evil.com', role: 'admin' })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('7d')
+      .sign(forgedSecret);
+
+    await jwtVerify(forgedToken, secretKey);
+    forgedAccepted = true;
+  } catch {
+    forgedAccepted = false;
+  }
+  assert(!forgedAccepted, 'Forged JWT signed with fallback/invalid key is strictly rejected');
+
   console.log('\n--- 3. Testing Safe Asset Deletion Check ---');
   // Create a mock asset in DB
   const assetId = new ObjectId();

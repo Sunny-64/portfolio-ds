@@ -5,13 +5,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAdminLogsCollection, getLoginAttemptsCollection } from './mongodb';
 import { UAParser } from 'ua-parser-js';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
-const SESSION_SECRET = process.env.SESSION_SECRET || 'fallback-secret-at-least-32-chars-long-security-key';
-
 export const SESSION_COOKIE_NAME = 'admin_session';
 const SESSION_DURATION = 7 * 24 * 60 * 60; // 7 days in seconds
 
-const secretKey = new TextEncoder().encode(SESSION_SECRET);
+/**
+ * Returns the secret key for signing and verifying JWT tokens.
+ * Strictly fails closed if SESSION_SECRET is missing or less than 32 characters.
+ */
+function getSecretKey(): Uint8Array | null {
+  const secret = process.env.SESSION_SECRET?.trim();
+  if (!secret || secret.length < 32) {
+    return null;
+  }
+  return new TextEncoder().encode(secret);
+}
 
 export interface AdminSessionPayload {
   email: string;
@@ -117,22 +124,32 @@ export async function verifyAdminCredentials(
 
 /**
  * Creates a signed JWT session token for the admin.
+ * Throws an error (fails closed) if SESSION_SECRET is missing or invalid.
  */
 export async function createSessionToken(): Promise<string> {
-  const email = process.env.ADMIN_EMAIL || ADMIN_EMAIL || 'admin';
+  const secret = getSecretKey();
+  if (!secret) {
+    throw new Error('SESSION_SECRET environment variable is missing or insecure (must be at least 32 characters).');
+  }
+  const email = (process.env.ADMIN_EMAIL || '').trim().toLowerCase() || 'admin';
   return new SignJWT({ email, role: 'admin' })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime(`${SESSION_DURATION}s`)
-    .sign(secretKey);
+    .sign(secret);
 }
 
 /**
  * Verifies a session token string.
+ * Strictly fails closed if SESSION_SECRET is missing or invalid.
  */
 export async function verifySessionToken(token: string): Promise<AdminSessionPayload | null> {
+  const secret = getSecretKey();
+  if (!secret) {
+    return null;
+  }
   try {
-    const { payload } = await jwtVerify(token, secretKey);
+    const { payload } = await jwtVerify(token, secret);
     if (payload.role === 'admin') {
       return payload as unknown as AdminSessionPayload;
     }
